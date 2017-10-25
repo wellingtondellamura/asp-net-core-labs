@@ -1,0 +1,29 @@
+@model simple_crud.Models.Genre
+
+@{
+    ViewData["Title"] = "Remover Gênero";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h4>Deseja remover o gênero @Html.DisplayFor(model => model.Description) ?</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="GenreId" />
+            <div class="form-group">
+                <input type="submit" value="Sim" class="btn btn-default" />
+                <a asp-action="Index" class="btn btn-default">Não</a>   
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Listar Gêneros</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

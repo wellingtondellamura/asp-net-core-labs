@@ -1,0 +1,39 @@
+﻿@model IEnumerable<simple_crud.Models.Genre>
+
+@{
+    ViewData["Title"] = "Listar Gênero";
+}
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Create">Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.GenreId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>                
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GenreId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GenreId">Alterar</a> |
+                <a asp-action="Delete" asp-route-id="@item.GenreId">Remover</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
