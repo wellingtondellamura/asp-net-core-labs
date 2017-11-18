@@ -68,6 +68,7 @@ namespace BookStore.Controllers
             return View(book);
         }
 
+
         
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -118,6 +119,28 @@ namespace BookStore.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+
+        public IActionResult AddImage(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+
+            var book = _context.Books
+                .Include(b => b.Category)
+                .AsNoTracking()
+                .SingleOrDefault(b => b.BookId == id);
+
+            if (book == null)
+            {
+                return NotFound();
+            }            
+            PopulateCategoriesDropDownList(book.CategoryId);
+            return View(book);
+        }
 
         private void PopulateCategoriesDropDownList(object selectedCategory = null)
         {

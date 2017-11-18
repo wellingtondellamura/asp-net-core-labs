@@ -41,6 +41,10 @@
     </div>
 </div>
 
+@foreach (var item in ViewBag.CategoryId.Items) {
+        @Html.DisplayFor(modelItem => item)
+}
+
 <div>
     <a asp-action="Index">Listar Categorias</a>
 </div>
